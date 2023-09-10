@@ -1,26 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<h1>Vue 3.0 학습</h1>
+<Children01 :name="name" :onChange="onChange"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Children01 from './components/props/ChildrenComponent.vue';
+import {ref} from 'vue';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Children01
+  },
+  setup (){
+    const boolean = ref(true);
+    const name = ref('최재근');
+    const onChange = ()=>{
+      boolean.value = !boolean.value;
+      if(!boolean.value){
+        name.value = '최재강'
+      }else{
+        name.value = '최재근'
+      }
+      console.log(boolean.value)
+            }
+    return {
+      name,
+      onChange
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
